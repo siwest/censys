@@ -1,9 +1,10 @@
 # Device Change Event Metadata
 
-`device_change_event_metadata.py` is a python script that reads CSV datafiles in the `data-dump` directory, and loads all data into a Pandas dataframe.
-Cleaning is then performed on the **key fields** `timestamp`, `device_id`, and `event_type`.
+`device_change_event_metadata.py` is a python script that reads CSV datafiles in the `data-dump` directory, and loads all data into a Pandas dataframe, and outputs some interesting metadata and data visualizations.
 
-During development, there were a number of data quality issues found.
+Before rendering the metadata and data visualizations, data cleansing is performed on some **key fields** found in the data: `timestamp`, `device_id`, and `event_type`.
+
+Examples of data quality issues found:
 - Rows found containing data that did not match the schema. For instance, there were rows that had the `timestamp` missing, which is the first ordinal field in the schema. When timestamp value was missing, the next ordinal field `device_id` took its place instead.
 - NULL values for key fields
 - Invalid values for key fields
@@ -13,11 +14,11 @@ Any rows containing invalid `timestamp`, `device_id`, and `event_type` values we
 
 ## Assumptions 
 
-Some assumptions regarding the data cleansing were used.
+Assumptions regarding the data and task at-hand include the following:
 
-- This is complete data for the timeframe, and there are no files are missing.
+- The files in `data-dump` represent a complete data for a timeframe, and there are no files are missing.
 
-- The removal of rows with malformed data or NULL will not have statistical significance on the resulting metadata output.
+- The removal of rows with malformed data or NULL will not have statistical significance on the resulting metadata and outputs generated.
 
 - To lowercase `device_id` and `event_type` fields, the `casefold()` method was used over `lower() to handle possible non-ascii characters.
 
