@@ -20,7 +20,7 @@ Assumptions regarding the data and task at-hand include the following:
 
 - The removal of rows with malformed data or NULL will not have statistical significance on the resulting metadata and outputs generated.
 
-- To lowercase `device_id` and `event_type` fields, the `casefold()` method was used over `lower() to handle possible non-ascii characters.
+- For `device_id` and `event_type` fields, the `casefold()` method was used over `lower()` to handle possible non-ascii characters.
 
 - The metadata required for output is limited to saving to the min, max, and mean of the count of each event type per device_id. Therefore,a complete run of the script `device_change_event_metadata.py` results in the following outputs:
 	* Intermediate and final aggregations printed to console
