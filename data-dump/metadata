@@ -1,0 +1,5 @@
+event_type,min,max,mean
+green,4,109,31.6
+light,75,117,98.2
+round,20,189,127.2
+squirrel,139,5535,1485.7
