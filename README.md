@@ -1,15 +1,12 @@
 # Device Change Event Metadata
 
 `device_change_event_metadata.py` is a python script that reads CSV datafiles in the `data-dump` directory, and loads all data into a Pandas dataframe.
-Cleaning is then performed on the `timestamp`, `device_id`, and `event_type`.
+Cleaning is then performed on the **key fields** `timestamp`, `device_id`, and `event_type`.
 
 During development, there were a number of data quality issues found.
-
-	* Rows found containing data that did not match the schema. For instance, there were rows that had the `timestamp` missing, which is the first ordinal field in the schema. When timestamp value was missing, the next ordinal field `device_id` took its place instead.
-
-	* NULL values for key fields
-
-	* Invalid values for key fields
+- Rows found containing data that did not match the schema. For instance, there were rows that had the `timestamp` missing, which is the first ordinal field in the schema. When timestamp value was missing, the next ordinal field `device_id` took its place instead.
+- NULL values for key fields
+- Invalid values for key fields
 
 Any rows containing invalid `timestamp`, `device_id`, and `event_type` values were ignored from the statistical outputs of this script.
 
@@ -18,13 +15,13 @@ Any rows containing invalid `timestamp`, `device_id`, and `event_type` values we
 
 Some assumptions regarding the data cleansing were used.
 
-* This is complete data for the timeframe, and there are no files are missing.
+- This is complete data for the timeframe, and there are no files are missing.
 
-* The removal of rows with malformed data or NULL will not have statistical significance on the resulting metadata output.
+- The removal of rows with malformed data or NULL will not have statistical significance on the resulting metadata output.
 
-* To lowercase `device_id` and `event_type` fields, the `casefold()` method was used over `lower() to handle possible non-ascii characters.
+- To lowercase `device_id` and `event_type` fields, the `casefold()` method was used over `lower() to handle possible non-ascii characters.
 
-* The metadata required for output is limited to saving to the min, max, and mean of the count of each event type per device_id. Upon a complete run of the script `device_change_event_metadata.py`, there should be:
+- The metadata required for output is limited to saving to the min, max, and mean of the count of each event type per device_id. Therefore,a complete run of the script `device_change_event_metadata.py` results in the following outputs:
 	* Intermediate and final aggregations printed to console
 	* A file generated in the path `data-dump/metadata` in CSV format containing the Min, Max, and Mean of the Frequency of Events Sent by Devices per Event Type.
 
@@ -40,7 +37,9 @@ python3
 ### Dependencies
 
 matplotlib
+
 pandas
+
 numpy
 
 
@@ -48,13 +47,13 @@ numpy
 
 ## How to Run
 
-#) Ensure all folder paths are unzipped. 
-#) Ensure python3 runtime environment.
-#) Confirm package dependencies are installed. i.e., `pip install matplotlib`
-#) Run the following commands in a command-line terminal.
-
+1) Ensure all folder paths are unzipped. 
+2) Ensure python3 runtime environment.
+3) Confirm package dependencies are installed. i.e., `pip install matplotlib`
+4) Run the following commands in a command-line terminal.
 
 `cd censys`		
+
 `python3 device_change_event_metadata.py`
 
 There will be metadata output to the terminal/console, as well as summary metadata written to data-dump/metadata in CSV format.
@@ -67,11 +66,11 @@ The Python script will leverage matplotlib library to render graphics for Histog
 
 Some possibilities for extending the functionality of this program include the following, in no specified order:
 
-	* Log counts of rows ignored, reason for ignoring that row, including the filename and row number of ignored / errored row. 
-		* Output to console summary aggregate information on the reason the ignored row.
-		* Create data files for ignored rows; intermediate and aggregate
-	* Output aggregate metadata per `date` to understand when new errors are introduced, and any skew in the data over time.
-		* Log which devices emit over a normal threshold of events.
-		* Normalize frequency of events by percentile to understand threshold bounds.
-		* Create data file for devices with abnormal activity.
+* Log counts of rows ignored, reason for ignoring that row, including the filename and row number of ignored / errored row. 
+	* Output to console summary aggregate information on the reason the ignored row.
+	* Create data files for ignored rows; intermediate and aggregate
+* Output aggregate metadata per `date` to understand when new errors are introduced, and any skew in the data over time.
+	* Log which devices emit over a normal threshold of events.
+	* Normalize frequency of events by percentile to understand threshold bounds.
+	* Create data file for devices with abnormal activity.
 
