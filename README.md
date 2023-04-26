@@ -11,6 +11,22 @@ Examples of data quality issues found:
 
 Any rows containing invalid `timestamp`, `device_id`, and `event_type` values were ignored from the statistical outputs of this script.
 
+## How to Run
+
+1) Clone this repo. Ensure all folder paths are unzipped. 
+2) Ensure python3 runtime environment.
+3) Confirm package dependencies are installed. i.e., `pip install -r requirements.tx`
+4) Run the following commands in a command-line terminal.
+
+`cd censys`		
+
+`python event_analytics/run_event_analytics.py`
+
+There will be metadata output to the terminal/console, as well as summary metadata written to data-dump/metadata in CSV format.
+
+The Python script will leverage matplotlib library to render graphics for Histograms.
+
+
 
 ## Assumptions 
 
@@ -43,23 +59,6 @@ pandas
 
 numpy
 
-
-
-
-## How to Run
-
-1) Ensure all folder paths are unzipped. 
-2) Ensure python3 runtime environment.
-3) Confirm package dependencies are installed. i.e., `pip install matplotlib`
-4) Run the following commands in a command-line terminal.
-
-`cd censys`		
-
-`python3 device_change_event_metadata.py`
-
-There will be metadata output to the terminal/console, as well as summary metadata written to data-dump/metadata in CSV format.
-
-The Python script will leverage matplotlib library to render graphics for Histograms.
 
 
 
