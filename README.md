@@ -1,6 +1,6 @@
 # Device Change Event Metadata
 
-`device_change_event_metadata.py` is a python script that reads CSV datafiles in the `data-dump` directory, and loads all data into a Pandas dataframe, and outputs some interesting metadata and data visualizations.
+`run_event_analytics.py` is a python script that reads CSV datafiles in the `data-dump` directory, and loads all data into a Pandas dataframe, and outputs some interesting metadata and data visualizations.
 
 Before rendering the metadata and data visualizations, data cleansing is performed on some **key fields** found in the data: `timestamp`, `device_id`, and `event_type`.
 

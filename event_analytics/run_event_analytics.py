@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 def run():
 
-    target_directory = "data-dump"
+    target_directory = "event_analytics/data-dump"
     spacer = f"\n{'#'*79}\n"
 
     events_df = load_events(target_directory)
